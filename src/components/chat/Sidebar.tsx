@@ -7,6 +7,8 @@ import { Chat } from "@/pages/App";
 import { useTheme } from "@/components/theme-provider";
 import { motion, AnimatePresence } from "framer-motion";
 import { useNavigate } from "react-router-dom";
+import { auth } from "@/firebase";
+import { toast } from "@/hooks/use-toast";
 
 interface SidebarProps {
   chats: Chat[];
@@ -29,9 +31,16 @@ export function Sidebar({
   const navigate = useNavigate();
   const [hoveredChat, setHoveredChat] = useState<string | null>(null);
 
-  const handleLogout = () => {
-    navigate('/');
+  const handleLogout = async () => {
+    try {
+      await auth.signOut();
+      toast({ title: "Logged out", description: "You have been signed out.", variant: "default" });
+      navigate('/');
+    } catch (e: any) {
+      toast({ title: "Logout failed", description: e.message, variant: "destructive" });
+    }
   };
+
 
   if (!isOpen) return null;
 
