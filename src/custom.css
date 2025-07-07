@@ -1,0 +1,27 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  .prose h1 {
+    @apply text-2xl font-bold mb-4 mt-6;
+  }
+  .prose h2 {
+    @apply text-xl font-semibold mb-3 mt-5;
+  }
+  .prose h3 {
+    @apply text-lg font-semibold mb-2 mt-4;
+  }
+  .prose p {
+    @apply text-base font-normal mb-4;
+  }
+  .prose ul {
+    @apply list-disc pl-5 mb-4;
+  }
+  .prose li {
+    @apply mb-2;
+  }
+  .prose code:not(pre > code) {
+    @apply bg-slate-100 dark:bg-slate-800 rounded-md px-1.5 py-0.5 text-sm font-mono;
+  }
+}
